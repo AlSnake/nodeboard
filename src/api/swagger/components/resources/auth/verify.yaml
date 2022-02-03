@@ -1,0 +1,27 @@
+x-swagger-router-controller: auth
+
+post:
+  tags:
+    - Authentication
+  description: Verify User
+  operationId: postVerifyUser
+  requestBody:
+    description: User Details
+    required: true
+    content:
+      application/json:
+        schema:
+          properties:
+            email:
+              type: string
+            token:
+              type: string
+  responses:
+    200:
+      $ref: "../../responses/200OKMessage.yaml"
+    404:
+      $ref: "../../responses/404NotFound.yaml"
+    422:
+      $ref: "../../responses/422UnprocessableEntity.yaml"
+    500:
+      $ref: "../../responses/500InternalServerError.yaml"

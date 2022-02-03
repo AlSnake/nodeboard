@@ -1,0 +1,17 @@
+404NotFound:
+  $ref: "./404NotFound.yaml"
+
+500InternalServerError:
+  $ref: "./500InternalServerError.yaml"
+
+200OK:
+  $ref: "./200OK.yaml"
+
+422UnprocessableEntity:
+  $ref: "./422UnprocessableEntity.yaml"
+
+201Created:
+  $ref: "./201Created.yaml"
+
+204NoContent:
+  $ref: "./204NoContent.yaml"

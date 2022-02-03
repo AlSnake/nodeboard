@@ -1,0 +1,22 @@
+x-swagger-router-controller: auth
+
+post:
+  tags:
+    - Authentication
+  description: Login User
+  operationId: postLogin
+  requestBody:
+    $ref: "../../requestBodies/auth/login.yaml"
+  responses:
+    200:
+      $ref: "../../responses/200OK.yaml"
+      content:
+        application/json:
+          schema:
+            properties:
+              token:
+                type: string
+    401:
+      $ref: "../../responses/401Unauthorized.yaml"
+    500:
+      $ref: "../../responses/500InternalServerError.yaml"

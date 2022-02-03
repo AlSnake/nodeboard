@@ -1,0 +1,42 @@
+x-swagger-router-controller: user
+
+get:
+  tags:
+    - Users
+  description: Get all Users
+  operationId: getUsers
+  responses:
+    200:
+      $ref: "../../responses/200OK.yaml"
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "../schemas/User.yaml"
+    500:
+      $ref: "../../responses/500InternalServerError.yaml"
+
+post:
+  tags:
+    - Users
+  description: Create new User
+  operationId: postUsers
+  requestBody:
+    description: User to be created
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/UserNoId.yaml"
+  responses:
+    201:
+      $ref: "../../responses/201Created.yaml"
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/User.yaml"
+    422:
+      $ref: "../../responses/422UnprocessableEntity.yaml"
+    500:
+      $ref: "../../responses/500InternalServerError.yaml"

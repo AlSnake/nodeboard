@@ -1,0 +1,3 @@
+# PATH
+userId:
+  $ref: "./path/userId.yaml"

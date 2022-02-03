@@ -1,0 +1,19 @@
+# CONFIG
+.env
+config.json
+
+# Folders
+build
+.vscode
+node_modules
+logs
+
+# Others
+*.expand
+*.bin
+*.o
+*.d
+*.a
+
+# FILES
+src/api/swagger/swagger.yaml

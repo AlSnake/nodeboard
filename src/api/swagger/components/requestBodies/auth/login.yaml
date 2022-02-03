@@ -1,0 +1,10 @@
+description: Login Details
+required: true
+content:
+  application/json:
+    schema:
+      properties:
+        email:
+          type: string
+        password:
+          type: string

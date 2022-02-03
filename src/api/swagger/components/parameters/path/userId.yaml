@@ -1,0 +1,6 @@
+- in: path
+  name: userId
+  description: The ID of User to retrieve
+  required: true
+  schema:
+    type: string

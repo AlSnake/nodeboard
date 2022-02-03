@@ -1,0 +1,9 @@
+properties:
+  email:
+    type: string
+  username:
+    type: string
+  password:
+    type: string
+  flags:
+    $ref: "./UserFlags.yaml"

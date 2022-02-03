@@ -1,0 +1,4 @@
+Bearer:
+  in: header
+  name: authorization
+  type: apiKey

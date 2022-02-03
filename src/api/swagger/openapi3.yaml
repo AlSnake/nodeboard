@@ -1,0 +1,54 @@
+openapi: 3.0.0
+info:
+  version: "1.3.0"
+  title: Nodeboard
+  description: Nodeboard OPENAPI DOCS
+
+servers:
+  - url: http://{host}:{port}/api/{basePath}
+    description: API SERVER
+    variables:
+      host:
+        default: "localhost"
+      port:
+        default: "3000"
+      basePath:
+        default: v1
+
+paths:
+  /users:
+    $ref: "./components/resources/user/users.yaml"
+
+  /users/{userId}:
+    $ref: "./components/resources/user/user.yaml"
+
+  /users/@me:
+    $ref: "./components/resources/user/me.yaml"
+
+  /auth/login:
+    $ref: "./components/resources/auth/login.yaml"
+
+  /auth/verify:
+    $ref: "./components/resources/auth/verify.yaml"
+
+  /auth/verify/send:
+    $ref: "./components/resources/auth/send.yaml"
+
+  /swagger:
+    x-swagger-pipe: swagger_raw
+
+components:
+  schemas:
+    $ref: "./components/schemas/index.yaml"
+
+  parameters:
+    $ref: "./components/parameters/index.yaml"
+
+  responses:
+    $ref: "./components/responses/index.yaml"
+
+  securitySchemes:
+    $ref: "./components/securitySchemes/index.yaml"
+
+  requestBodies:
+    $ref: "./components/requestBodies/index.yaml"

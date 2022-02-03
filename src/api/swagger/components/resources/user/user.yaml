@@ -1,0 +1,57 @@
+x-swagger-router-controller: user
+parameters:
+  $ref: "../../parameters/path/userId.yaml"
+
+get:
+  tags:
+    - Users
+  description: Get User by ID
+  operationId: getUser
+  responses:
+    200:
+      $ref: "../../responses/200OK.yaml"
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/User.yaml"
+    404:
+      $ref: "../../responses/404NotFound.yaml"
+    500:
+      $ref: "../../responses/500InternalServerError.yaml"
+
+put:
+  tags:
+    - Users
+  description: Update User by ID
+  operationId: putUser
+  requestBody:
+    description: User to be updated
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/UserNoId.yaml"
+  responses:
+    200:
+      $ref: "../../responses/200OK.yaml"
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/User.yaml"
+    404:
+      $ref: "../../responses/404NotFound.yaml"
+    500:
+      $ref: "../../responses/500InternalServerError.yaml"
+
+delete:
+  tags:
+    - Users
+  description: Remove User by ID
+  operationId: deleteUser
+  responses:
+    204:
+      $ref: "../../responses/204NoContent.yaml"
+    404:
+      $ref: "../../responses/404NotFound.yaml"
+    500:
+      $ref: "../../responses/500InternalServerError.yaml"
