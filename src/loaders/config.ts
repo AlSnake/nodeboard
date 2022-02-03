@@ -1,7 +1,14 @@
 import 'dotenv/config';
 import { Config } from '../config/Config';
+import testconf from '../config/conf/config.test.json';
+import devconf from '../config/conf/config.dev.json';
 
-export default function (): void {
+function setConfig(key: string, value: any) {
+	if (!value) throw new Error(key + ' NOT SET');
+	Config.set(key, value);
+}
+
+export function loadProdConfig(): void {
 	// APP
 	setConfig('NODE_ENV', process.env.NODE_ENV);
 	setConfig('PORT', process.env.PORT);
@@ -23,7 +30,8 @@ export default function (): void {
 	setConfig('NOREPLY_EMAIL', process.env.NOREPLY_EMAIL);
 }
 
-function setConfig(key: string, value: any) {
-	if (!value) throw new Error(key + ' NOT SET');
-	Config.set(key, value);
+export function loadEnvConfig(env: string) {
+	if (env === 'test') Config.reloadFromObject(testconf);
+	else if (env === 'dev') Config.reloadFromObject(devconf);
+	else loadProdConfig();
 }

@@ -8,4 +8,8 @@ export class Config {
 	static get(key: string) {
 		return this.settings.get(key);
 	}
+
+	static reloadFromObject(obj: object) {
+		this.settings = new Map(Object.entries(obj));
+	}
 }

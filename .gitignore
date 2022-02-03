@@ -1,6 +1,9 @@
 # CONFIG
 .env
 config.json
+config.test.json
+config.dev.json
+config.prod.json
 
 # Folders
 build
