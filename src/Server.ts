@@ -13,7 +13,7 @@ import { Database } from './helpers/Database';
 
 export class Server {
 	private app: express.Application = express();
-	private server!: http.Server;
+	private _server!: http.Server;
 
 	constructor() {
 		this.initLoader();
@@ -26,14 +26,19 @@ export class Server {
 	}
 
 	listen = (port: string | number, cb?: () => void): void => {
-		this.server = this.app.listen(port, cb);
+		this._server = this.app.listen(port, cb);
 	};
 
 	close = (): void => {
-		if (this.server) this.server.close();
+		if (this._server) this._server.close();
 	};
 
+	get server(): http.Server {
+		return this._server;
+	}
+
 	private initLoader() {
+		if (!process.env.NODE_ENV) throw new Error('BAD NODE_ENV');
 		startup(process.env.NODE_ENV);
 	}
 

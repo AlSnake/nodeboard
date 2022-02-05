@@ -19,11 +19,11 @@ paths:
   /users:
     $ref: "./components/resources/user/users.yaml"
 
+  /users/me:
+    $ref: "./components/resources/user/me.yaml"
+
   /users/{userId}:
     $ref: "./components/resources/user/user.yaml"
-
-  /users/@me:
-    $ref: "./components/resources/user/me.yaml"
 
   /auth/login:
     $ref: "./components/resources/auth/login.yaml"

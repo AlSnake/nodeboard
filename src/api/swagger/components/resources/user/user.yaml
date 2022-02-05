@@ -14,6 +14,8 @@ get:
         application/json:
           schema:
             $ref: "../schemas/User.yaml"
+    422:
+      $ref: "../../responses/422UnprocessableEntity.yaml"
     404:
       $ref: "../../responses/404NotFound.yaml"
     500:
@@ -38,6 +40,8 @@ put:
         application/json:
           schema:
             $ref: "../schemas/User.yaml"
+    422:
+      $ref: "../../responses/422UnprocessableEntity.yaml"
     404:
       $ref: "../../responses/404NotFound.yaml"
     500:
@@ -51,6 +55,8 @@ delete:
   responses:
     204:
       $ref: "../../responses/204NoContent.yaml"
+    422:
+      $ref: "../../responses/422UnprocessableEntity.yaml"
     404:
       $ref: "../../responses/404NotFound.yaml"
     500:

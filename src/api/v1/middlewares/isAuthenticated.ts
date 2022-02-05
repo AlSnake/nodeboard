@@ -14,8 +14,12 @@ export function isAuthenticated(
 	const authHeader = req.headers.authorization;
 	if (!authHeader) ThrowExtendedError('Not Authenticated', 401);
 
-	const token = authHeader.split(' ')[1];
-	const decoded = jwt.verify(token, jwtSecret) as jwt.JwtPayload;
-	req.userId = decoded.userId;
-	next();
+	try {
+		const token = authHeader.split(' ')[1];
+		const decoded = jwt.verify(token, jwtSecret) as jwt.JwtPayload;
+		req.userId = decoded.userId;
+		next();
+	} catch (err) {
+		ThrowExtendedError((err as Error).message, 400);
+	}
 }

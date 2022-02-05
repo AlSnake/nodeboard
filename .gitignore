@@ -10,6 +10,7 @@ build
 .vscode
 node_modules
 logs
+coverage
 
 # Others
 *.expand

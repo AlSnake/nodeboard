@@ -1,9 +1,8 @@
 import winston from 'winston';
-import path from 'path';
 import { Config } from '../config/Config';
+import appRoot from 'app-root-path';
 
-// @ts-ignore
-const logdir = path.dirname(require.main?.filename).replace(/build/g, 'logs');
+const logdir = appRoot.path + '/logs';
 
 const Levels = {
 	error: 0,

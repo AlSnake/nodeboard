@@ -49,6 +49,23 @@ export class UserController {
 		res.status(201).json(response);
 	}
 
+	static async getMe(
+		req: Request,
+		res: Response,
+		next: NextFunction
+	): Promise<void> {
+		const userId = req.userId;
+		const user = await UserService.getUserById(userId);
+		const response = {
+			id: user.id,
+			email: user.email,
+			username: user.username,
+			password: user.password,
+			flags: user.flags,
+		};
+		res.status(200).json(response);
+	}
+
 	static async getUser(
 		req: Request,
 		res: Response,
@@ -100,14 +117,5 @@ export class UserController {
 		const { userId } = req.params;
 		await UserService.deleteUser(userId);
 		res.status(204).end();
-	}
-
-	static async getMe(
-		req: Request,
-		res: Response,
-		next: NextFunction
-	): Promise<void> {
-		const userId = req.userId;
-		res.status(200).end();
 	}
 }

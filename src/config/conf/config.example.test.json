@@ -1,6 +1,6 @@
 {
 	"NODE_ENV": "test",
-	"PORT": "3000",
+	"PORT": "0",
 	"JWT_SECRET": "JWTTEST1234",
 
 	"MONGODB_HOST": "HOST",
