@@ -3,3 +3,9 @@ User:
 
 Forum:
   $ref: "./Forum.yaml"
+
+Thread:
+  $ref: "./Thread.yaml"
+
+Post:
+  $ref: "./Post.yaml"

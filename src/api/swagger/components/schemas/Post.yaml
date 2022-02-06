@@ -1,0 +1,9 @@
+properties:
+  id:
+    type: string
+  threadId:
+    type: string
+  userId:
+    type: string
+  message:
+    type: string

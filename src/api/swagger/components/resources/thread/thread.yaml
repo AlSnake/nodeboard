@@ -1,0 +1,67 @@
+x-swagger-router-controller: thread
+parameters:
+  - in: path
+    name: threadId
+    required: true
+    schema:
+      type: string
+
+get:
+  tags:
+    - Threads
+  description: Get Thread by ID
+  operationId: getThread
+  responses:
+    200:
+      $ref: "../../responses/200OK.yaml"
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/Thread.yaml"
+    422:
+      $ref: "../../responses/422UnprocessableEntity.yaml"
+    404:
+      $ref: "../../responses/404NotFound.yaml"
+    500:
+      $ref: "../../responses/500InternalServerError.yaml"
+
+put:
+  tags:
+    - Threads
+  description: Update Thread by ID
+  operationId: putThread
+  requestBody:
+    description: Thread to be updated
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/ThreadPost.yaml"
+  responses:
+    200:
+      $ref: "../../responses/200OK.yaml"
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/Thread.yaml"
+    422:
+      $ref: "../../responses/422UnprocessableEntity.yaml"
+    404:
+      $ref: "../../responses/404NotFound.yaml"
+    500:
+      $ref: "../../responses/500InternalServerError.yaml"
+
+delete:
+  tags:
+    - Threads
+  description: Remove Thread by ID
+  operationId: deleteThread
+  responses:
+    204:
+      $ref: "../../responses/204NoContent.yaml"
+    422:
+      $ref: "../../responses/422UnprocessableEntity.yaml"
+    404:
+      $ref: "../../responses/404NotFound.yaml"
+    500:
+      $ref: "../../responses/500InternalServerError.yaml"

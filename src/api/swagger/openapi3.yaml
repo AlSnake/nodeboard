@@ -40,6 +40,18 @@ paths:
   /forums/{forumId}:
     $ref: "./components/resources/forum/forum.yaml"
 
+  /threads:
+    $ref: "./components/resources/thread/threads.yaml"
+
+  /threads/{threadId}:
+    $ref: "./components/resources/thread/thread.yaml"
+
+  /threads/{threadId}/posts:
+    $ref: "./components/resources/thread/posts.yaml"
+
+  /threads/{threadId}/posts/{postId}:
+    $ref: "./components/resources/thread/post.yaml"
+
   /swagger:
     x-swagger-pipe: swagger_raw
 

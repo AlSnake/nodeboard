@@ -15,6 +15,13 @@ export class ModelService<T extends {}> {
 		return await this._model.find({});
 	}
 
+	async getAllByProperty(data: object) {
+		const findData = await this._model.find(data);
+		if (!findData)
+			ThrowExtendedError(`${this._model.modelName} not Found!`, 404);
+		return findData;
+	}
+
 	async create(data: T) {
 		return await this._model.create(data);
 	}

@@ -1,0 +1,13 @@
+properties:
+  id:
+    type: string
+  subject:
+    type: string
+  forumId:
+    type: string
+  userId:
+    type: string
+  firstPostId:
+    type: string
+  postcount:
+    type: integer

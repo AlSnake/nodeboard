@@ -23,7 +23,7 @@ export class UserService extends ModelService<IUser> {
 			ThrowExtendedError('Username or Email Already Exists', 422);
 
 		user.password = await bcrypt.hash(user.password, 12);
-		return await User.create({ ...user });
+		return await super.create(user);
 	}
 
 	async update(id: string, user: IUser) {
@@ -37,8 +37,7 @@ export class UserService extends ModelService<IUser> {
 			ThrowExtendedError('Username or Email Already Exists', 422);
 
 		user.password = await bcrypt.hash(user.password, 12);
-		await findUser.updateOne(user);
-		return await this.getById(id);
+		return await super.update(id, user);
 	}
 
 	async isEmailVerified(email: string) {

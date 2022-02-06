@@ -2,6 +2,8 @@ import express from 'express';
 import UserRoutes from './User';
 import AuthRoutes from './Auth';
 import ForumRoutes from './Forum';
+import ThreadRoutes from './Thread';
+import PostRoutes from './Post';
 
 export default class Router {
 	private static router: express.Router;
@@ -19,5 +21,7 @@ export default class Router {
 		Router.router.use(Router.basePath, UserRoutes);
 		Router.router.use(Router.basePath, AuthRoutes);
 		Router.router.use(Router.basePath, ForumRoutes);
+		Router.router.use(Router.basePath, ThreadRoutes);
+		Router.router.use(Router.basePath, PostRoutes);
 	}
 }

@@ -1,0 +1,72 @@
+x-swagger-router-controller: post
+parameters:
+  - in: path
+    name: threadId
+    required: true
+    schema:
+      type: string
+  - in: path
+    name: postId
+    required: true
+    schema:
+      type: string
+
+get:
+  tags:
+    - Threads
+  description: Get Post by ID
+  operationId: getPost
+  responses:
+    200:
+      $ref: "../../responses/200OK.yaml"
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/Post.yaml"
+    422:
+      $ref: "../../responses/422UnprocessableEntity.yaml"
+    404:
+      $ref: "../../responses/404NotFound.yaml"
+    500:
+      $ref: "../../responses/500InternalServerError.yaml"
+
+put:
+  tags:
+    - Threads
+  description: Update Post by ID
+  operationId: putPost
+  requestBody:
+    description: Post to be updated
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/PostPost.yaml"
+  responses:
+    200:
+      $ref: "../../responses/200OK.yaml"
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/Post.yaml"
+    422:
+      $ref: "../../responses/422UnprocessableEntity.yaml"
+    404:
+      $ref: "../../responses/404NotFound.yaml"
+    500:
+      $ref: "../../responses/500InternalServerError.yaml"
+
+delete:
+  tags:
+    - Threads
+  description: Remove Post by ID
+  operationId: deletePost
+  responses:
+    204:
+      $ref: "../../responses/204NoContent.yaml"
+    422:
+      $ref: "../../responses/422UnprocessableEntity.yaml"
+    404:
+      $ref: "../../responses/404NotFound.yaml"
+    500:
+      $ref: "../../responses/500InternalServerError.yaml"

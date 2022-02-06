@@ -4,7 +4,7 @@ import { validationHandler } from './handler';
 
 export function validateSnowflakeParam(name: string): RequestHandler[] {
 	return [
-		param(name)
+		param(name, 'ID must be a valid Snowflake ID')
 			.exists()
 			.isString()
 			.matches(/^[0-9]+$/),

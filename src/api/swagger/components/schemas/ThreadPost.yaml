@@ -1,0 +1,7 @@
+properties:
+  subject:
+    type: string
+  forumId:
+    type: string
+  userId:
+    type: string

@@ -1,0 +1,48 @@
+x-swagger-router-controller: post
+parameters:
+  - in: path
+    name: threadId
+    required: true
+    schema:
+      type: string
+
+get:
+  tags:
+    - Threads
+  description: Get all Posts
+  operationId: getPosts
+  responses:
+    200:
+      $ref: "../../responses/200OK.yaml"
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "../schemas/Post.yaml"
+    500:
+      $ref: "../../responses/500InternalServerError.yaml"
+
+post:
+  tags:
+    - Threads
+  description: Create new Post
+  operationId: postPosts
+  requestBody:
+    description: Post to be created
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/PostPost.yaml"
+  responses:
+    201:
+      $ref: "../../responses/201Created.yaml"
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/Post.yaml"
+    422:
+      $ref: "../../responses/422UnprocessableEntity.yaml"
+    500:
+      $ref: "../../responses/500InternalServerError.yaml"
