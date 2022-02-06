@@ -3,6 +3,8 @@ import { UserService } from '../services/UserService';
 import { AuthService } from '../services/AuthService';
 
 export class AuthController {
+	private static userService: UserService = new UserService();
+
 	static async postLogin(
 		req: Request,
 		res: Response,
@@ -20,7 +22,7 @@ export class AuthController {
 	) {
 		const { email } = req.body;
 
-		if (await UserService.isEmailVerified(email))
+		if (await AuthController.userService.isEmailVerified(email))
 			return res
 				.status(200)
 				.json({ message: 'Email is Already Verified' });
@@ -38,7 +40,7 @@ export class AuthController {
 	) {
 		const { email, token } = req.body;
 
-		if (await UserService.isEmailVerified(email))
+		if (await AuthController.userService.isEmailVerified(email))
 			return res
 				.status(200)
 				.json({ message: 'Email is Already Verified' });

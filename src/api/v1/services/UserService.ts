@@ -1,26 +1,21 @@
+import { ModelService } from './ModelService';
+import { IUser } from '../interfaces/User';
 import User from '../models/User';
 import { ThrowExtendedError } from '../helpers/error';
-import { User as IUser } from '../interfaces/User';
 import bcrypt from 'bcryptjs';
 
-export class UserService {
-	static async getUsers() {
-		return await User.find({});
+export class UserService extends ModelService<IUser> {
+	constructor() {
+		super(User);
 	}
 
-	static async getUserById(id: string) {
-		const findUser = await User.findOne({ id });
-		if (!findUser) ThrowExtendedError('User not found!', 404);
-		return findUser;
-	}
-
-	static async getUserByEmail(email: string) {
+	async getUserByEmail(email: string) {
 		const user = await User.findOne({ email: email });
 		if (!user) ThrowExtendedError('User not found!', 404);
 		return user;
 	}
 
-	static async createUser(user: IUser) {
+	async create(user: IUser) {
 		const findUser = await User.findOne({
 			$or: [{ email: user.email }, { username: user.username }],
 		});
@@ -28,11 +23,11 @@ export class UserService {
 			ThrowExtendedError('Username or Email Already Exists', 422);
 
 		user.password = await bcrypt.hash(user.password, 12);
-		return await new User({ ...user }).save();
+		return await User.create({ ...user });
 	}
 
-	static async updateUser(id: string, user: IUser) {
-		const findUser = await UserService.getUserById(id);
+	async update(id: string, user: IUser) {
+		const findUser = await this.getById(id);
 
 		const emailUsernameTaken = await User.findOne({
 			id: { $ne: id },
@@ -43,15 +38,10 @@ export class UserService {
 
 		user.password = await bcrypt.hash(user.password, 12);
 		await findUser.updateOne(user);
-		return await this.getUserById(id);
+		return await this.getById(id);
 	}
 
-	static async deleteUser(id: string) {
-		const findUser = await UserService.getUserById(id);
-		return await findUser.deleteOne();
-	}
-
-	static async isEmailVerified(email: string) {
-		return (await UserService.getUserByEmail(email)).email_verified;
+	async isEmailVerified(email: string) {
+		return (await this.getUserByEmail(email)).email_verified;
 	}
 }

@@ -3,12 +3,14 @@ import { ForumService } from '../services/ForumService';
 import { generateSnowflake } from '../helpers/Snowflake';
 
 export class ForumController {
+	private static forumService: ForumService = new ForumService();
+
 	static async getForums(
 		req: Request,
 		res: Response,
 		next: NextFunction
 	): Promise<void> {
-		const forums = await ForumService.getForums();
+		const forums = await ForumController.forumService.getAll();
 		const response = forums.map((forum) => {
 			return {
 				id: forum.id,
@@ -28,7 +30,7 @@ export class ForumController {
 		const { name, description } = req.body;
 		const id = generateSnowflake();
 
-		const forum = await ForumService.createForum({
+		const forum = await ForumController.forumService.create({
 			id,
 			name,
 			description,
@@ -50,7 +52,7 @@ export class ForumController {
 		next: NextFunction
 	): Promise<void> {
 		const { forumId } = req.params;
-		const forum = await ForumService.getForumById(forumId);
+		const forum = await ForumController.forumService.getById(forumId);
 		const response = {
 			id: forum.id,
 			name: forum.name,
@@ -68,7 +70,7 @@ export class ForumController {
 		const { forumId } = req.params;
 		const { name, description } = req.body;
 
-		const forum = await ForumService.updateForum(forumId, {
+		const forum = await ForumController.forumService.update(forumId, {
 			id: forumId,
 			name,
 			description,
@@ -89,7 +91,7 @@ export class ForumController {
 		next: NextFunction
 	): Promise<void> {
 		const { forumId } = req.params;
-		await ForumService.deleteForum(forumId);
+		await ForumController.forumService.delete(forumId);
 		res.status(204).end();
 	}
 }

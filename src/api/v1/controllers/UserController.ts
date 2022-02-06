@@ -3,12 +3,14 @@ import { UserService } from '../services/UserService';
 import { generateSnowflake } from '../helpers/Snowflake';
 
 export class UserController {
+	private static userService: UserService = new UserService();
+
 	static async getUsers(
 		req: Request,
 		res: Response,
 		next: NextFunction
 	): Promise<void> {
-		const users = await UserService.getUsers();
+		const users = await UserController.userService.getAll();
 		const response = users.map((user) => {
 			return {
 				id: user.id,
@@ -18,7 +20,6 @@ export class UserController {
 				flags: user.flags,
 			};
 		});
-
 		res.status(200).json(response);
 	}
 
@@ -30,7 +31,7 @@ export class UserController {
 		const { email, username, password, flags } = req.body;
 		const id = generateSnowflake();
 
-		const user = await UserService.createUser({
+		const user = await UserController.userService.create({
 			id,
 			email,
 			username,
@@ -45,7 +46,6 @@ export class UserController {
 			password: user.password,
 			flags: user.flags,
 		};
-
 		res.status(201).json(response);
 	}
 
@@ -55,7 +55,7 @@ export class UserController {
 		next: NextFunction
 	): Promise<void> {
 		const userId = req.userId;
-		const user = await UserService.getUserById(userId);
+		const user = await UserController.userService.getById(userId);
 		const response = {
 			id: user.id,
 			email: user.email,
@@ -72,7 +72,7 @@ export class UserController {
 		next: NextFunction
 	): Promise<void> {
 		const { userId } = req.params;
-		const user = await UserService.getUserById(userId);
+		const user = await UserController.userService.getById(userId);
 		const response = {
 			id: user.id,
 			email: user.email,
@@ -91,7 +91,7 @@ export class UserController {
 		const { userId } = req.params;
 		const { email, username, password, flags } = req.body;
 
-		const user = await UserService.updateUser(userId, {
+		const user = await UserController.userService.update(userId, {
 			id: userId,
 			email,
 			username,
@@ -115,7 +115,7 @@ export class UserController {
 		next: NextFunction
 	): Promise<void> {
 		const { userId } = req.params;
-		await UserService.deleteUser(userId);
+		await UserController.userService.delete(userId);
 		res.status(204).end();
 	}
 }

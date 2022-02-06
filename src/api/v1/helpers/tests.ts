@@ -1,9 +1,9 @@
-import { User } from '../interfaces/User';
+import { IUser } from '../interfaces/User';
 import { generateSnowflake } from './Snowflake';
 import { faker } from '@faker-js/faker';
 import { IForum } from '../interfaces/Forum';
 
-export function generateRandomUser(): User {
+export function generateRandomUser(): IUser {
 	let name = (faker.name.firstName() + faker.datatype.number()).toLowerCase();
 	return {
 		id: generateSnowflake(),

@@ -1,6 +1,6 @@
 import { Snowflake } from './types/Snowflake';
 
-export interface User {
+export interface IUser {
 	id: Snowflake;
 	email: string;
 	username: string;
@@ -9,7 +9,7 @@ export interface User {
 	email_verified?: boolean;
 }
 
-export interface UserExtra {
+export interface IUserExtra {
 	email_verify_token?: string;
 	email_verify_expiry?: Date | number;
 }

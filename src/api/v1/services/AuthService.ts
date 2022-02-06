@@ -9,11 +9,15 @@ import { MailConfig } from '../../../config/mail';
 import { Config } from '../../../config/Config';
 
 export class AuthService {
+	private static userService: UserService = new UserService();
+
 	static async login(user: loginWithEmailPass) {
 		const jwtSecret = Config.get('JWT_SECRET');
 		if (!jwtSecret) ThrowExtendedError('Internal Error JWT!', 500);
 
-		const findUser = await UserService.getUserByEmail(user.email);
+		const findUser = await AuthService.userService.getUserByEmail(
+			user.email
+		);
 
 		const verifyPassword = await bcrypt.compare(
 			user.password,
@@ -28,7 +32,7 @@ export class AuthService {
 
 	static async sendVerifyEmail(email: string) {
 		const verifyToken = await tokenGenerator(32);
-		const user = await UserService.getUserByEmail(email);
+		const user = await AuthService.userService.getUserByEmail(email);
 		user.email_verify_token = verifyToken;
 		user.email_verify_expiry = Date.now() + 10 * 60000;
 		await user.save();
@@ -47,7 +51,7 @@ export class AuthService {
 	}
 
 	static async verifyEmail(email: string, token: string) {
-		const user = await UserService.getUserByEmail(email);
+		const user = await AuthService.userService.getUserByEmail(email);
 
 		if (user.email_verify_token !== token)
 			ThrowExtendedError('Invalid Verification Token', 422);

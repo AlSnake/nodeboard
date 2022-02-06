@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
-import { User, UserExtra, UserFlags } from '../interfaces/User';
+import { IUser, IUserExtra, UserFlags } from '../interfaces/User';
 
-const userSchema = new Schema<User & UserExtra>(
+const userSchema = new Schema<IUser & IUserExtra>(
 	{
 		id: {
 			type: String,
@@ -41,4 +41,4 @@ const userSchema = new Schema<User & UserExtra>(
 	{ timestamps: true }
 );
 
-export default model<User & UserExtra>('User', userSchema);
+export default model<IUser & IUserExtra>('User', userSchema);
