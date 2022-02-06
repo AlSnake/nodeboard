@@ -210,7 +210,7 @@ describe('/v1/users', () => {
 		});
 
 		it('should return 404 if userId is invalid', async () => {
-			const res = await request(app.server).get('/api/v1/users/5123');
+			const res = await request(app.server).delete('/api/v1/users/5123');
 			expect(res.status).toBe(404);
 		});
 

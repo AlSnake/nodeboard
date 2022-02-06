@@ -34,6 +34,12 @@ paths:
   /auth/verify/send:
     $ref: "./components/resources/auth/send.yaml"
 
+  /forums:
+    $ref: "./components/resources/forum/forums.yaml"
+
+  /forums/{forumId}:
+    $ref: "./components/resources/forum/forum.yaml"
+
   /swagger:
     x-swagger-pipe: swagger_raw
 

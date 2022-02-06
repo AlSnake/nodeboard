@@ -1,2 +1,5 @@
 User:
   $ref: "./User.yaml"
+
+Forum:
+  $ref: "./Forum.yaml"

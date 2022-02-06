@@ -1,0 +1,67 @@
+x-swagger-router-controller: forum
+parameters:
+  - in: path
+    name: forumId
+    required: true
+    schema:
+      type: string
+
+get:
+  tags:
+    - Forums
+  description: Get Forum by ID
+  operationId: getForum
+  responses:
+    200:
+      $ref: "../../responses/200OK.yaml"
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/Forum.yaml"
+    422:
+      $ref: "../../responses/422UnprocessableEntity.yaml"
+    404:
+      $ref: "../../responses/404NotFound.yaml"
+    500:
+      $ref: "../../responses/500InternalServerError.yaml"
+
+put:
+  tags:
+    - Forums
+  description: Update Forum by ID
+  operationId: putForum
+  requestBody:
+    description: Forum to be updated
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/ForumPost.yaml"
+  responses:
+    200:
+      $ref: "../../responses/200OK.yaml"
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/Forum.yaml"
+    422:
+      $ref: "../../responses/422UnprocessableEntity.yaml"
+    404:
+      $ref: "../../responses/404NotFound.yaml"
+    500:
+      $ref: "../../responses/500InternalServerError.yaml"
+
+delete:
+  tags:
+    - Forums
+  description: Remove Forum by ID
+  operationId: deleteForum
+  responses:
+    204:
+      $ref: "../../responses/204NoContent.yaml"
+    422:
+      $ref: "../../responses/422UnprocessableEntity.yaml"
+    404:
+      $ref: "../../responses/404NotFound.yaml"
+    500:
+      $ref: "../../responses/500InternalServerError.yaml"

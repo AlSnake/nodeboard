@@ -1,0 +1,42 @@
+x-swagger-router-controller: forum
+
+get:
+  tags:
+    - Forums
+  description: Get all Forums
+  operationId: getForums
+  responses:
+    200:
+      $ref: "../../responses/200OK.yaml"
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "../schemas/Forum.yaml"
+    500:
+      $ref: "../../responses/500InternalServerError.yaml"
+
+post:
+  tags:
+    - Forums
+  description: Create new Forum
+  operationId: postForums
+  requestBody:
+    description: Forum to be created
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/ForumPost.yaml"
+  responses:
+    201:
+      $ref: "../../responses/201Created.yaml"
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/Forum.yaml"
+    422:
+      $ref: "../../responses/422UnprocessableEntity.yaml"
+    500:
+      $ref: "../../responses/500InternalServerError.yaml"

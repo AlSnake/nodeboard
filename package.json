@@ -1,6 +1,6 @@
 {
     "name": "nodeboard",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "description": "Nodeboard is An Open-Source Forum Platform",
     "main": "build/app.js",
     "scripts": {

@@ -1,6 +1,7 @@
 import { User } from '../interfaces/User';
 import { generateSnowflake } from './Snowflake';
 import { faker } from '@faker-js/faker';
+import { IForum } from '../interfaces/Forum';
 
 export function generateRandomUser(): User {
 	let name = (faker.name.firstName() + faker.datatype.number()).toLowerCase();
@@ -10,5 +11,14 @@ export function generateRandomUser(): User {
 		username: name,
 		password: 'Test1234$',
 		flags: 0,
+	};
+}
+
+export function generateRandomForum(): IForum {
+	return {
+		id: generateSnowflake(),
+		name: faker.name.firstName().toLowerCase(),
+		description: faker.name.lastName().toLowerCase(),
+		threadcount: faker.datatype.number(),
 	};
 }
